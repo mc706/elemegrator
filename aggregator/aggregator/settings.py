@@ -154,3 +154,8 @@ LOGGING = {
 }
 INSTALLED_APPS = ( 'snippetscream',) + INSTALLED_APPS
 CREATE_DEFAULT_SUPERUSER = True 
+
+try:
+    from local_settings import *
+except ImportError, exp:
+    pass
