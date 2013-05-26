@@ -2,13 +2,13 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response, RequestContext, redirect
-from feeds.models import Feed, Element, Subscription, Category
+from .models import Feed, Element, Subscription, Category
 
 def home(request):
     """Homepage"""
     if request.user.is_authenticated:
         return redirect(reverse('user_feeds'))
-    return render_to_reponse('home.html',
+    return render_to_response('home.html',
         {
             'title':'Home',
         }, RequestContext(request))
@@ -77,7 +77,7 @@ def user_subscriptions(request):
     else:
         pass
         #TODO: Load subscription form
-    return render_to_reponse('subscriptions.html',
+    return render_to_response('subscriptions.html',
         {
             'feeds':feeds,
             'title':'Update Subscriptions',

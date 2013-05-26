@@ -122,7 +122,15 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
     'feeds',
+    'registration',
 )
+
+ACCOUNT_ACTIVATION_DAYS=7
+EMAIL_USE_TLS=True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'foxbind@gmail.com'
+EMAIL_HOST_PASSWORD = 'foxbind2345'
+EMAIL_PORT = 587
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

@@ -1,0 +1,204 @@
+[
+   {
+      "pk": 1,
+       "model": "feeds.category",
+       "fields":{
+         "name": "Web Comic"
+       }
+   },
+      {
+      "pk": 2,
+       "model": "feeds.category",
+       "fields":{
+         "name": "Shirts"
+      }
+   },
+       {
+      "pk": 1,
+       "model": "feeds.element",
+       "fields":{
+         "selector": "{'id':'ctitle'}",
+         "type": "title",
+         "element": "div"
+      }
+   },
+   {
+
+      "pk": 2,
+       "model": "feeds.element",
+       "fields":{
+         "selector":"{'id':'comic'}",
+         "type": "body",
+         "element": "div"
+      }
+   },
+       {
+      "pk": 3,
+       "model": "feeds.element",
+       "fields":{
+         "selector": "{'class':'entry-title'}",
+         "type": "title",
+         "element": "h1"
+      }
+   },
+       {
+      "pk": 4,
+       "model": "feeds.element",
+       "fields":{
+         "selector": "{'class':'entry-content'}",
+         "type": "body",
+         "element": "div"
+      }
+   },
+       {
+      "pk": 5,
+       "model": "feeds.element",
+       "fields":{
+         "selector": "{'id':'p-title'}",
+         "type": "title",
+         "element": "span"
+      }
+   },
+       {
+      "pk": 6,
+       "model": "feeds.element",
+       "fields":{
+         "selector": "{'id':'zoom-pic'}",
+         "type": "body",
+         "element": "div"
+      }
+   },
+       {
+      "pk": 7,
+       "model": "feeds.element",
+       "fields":{
+         "selector": "{'alt':\"Cyanide and Happiness,a daily webcomic\"}",
+         "type": "body",
+         "element": "img"
+      }
+   },
+       {
+      "pk": 8,
+       "model": "feeds.element",
+       "fields":{
+         "selector": "{}",
+         "type": "title",
+         "element": "h2"
+      }
+   },
+       {
+      "pk": 9,
+       "model": "feeds.element",
+       "fields":{
+         "selector": "{'class':\"post comic\"}",
+         "type": "body",
+         "element": "div"
+      }
+   },
+       {
+      "pk": 10,
+      "model": "feeds.element",
+      "fields":{
+         "selector": "{'class':\"comic\"}",
+         "type": "body",
+         "element": "img"
+      }
+   },
+       {
+      "pk": 1,
+       "model": "feeds.feed",
+       "fields":       {
+         "category": 1,
+          "url":"http://www.xkcd.com/",
+          "elements":[
+            1,
+             2
+         ],
+          "name": "XKCD",
+          "published": true
+      }
+   },
+       {
+      "pk": 2,
+       "model": "feeds.feed",
+       "fields":       {
+         "category": 1,
+          "url":          "http://www.commitstrip.com/en/",
+          "elements":          [
+            3,
+             4
+         ],
+          "name": "Commit Strip",
+          "published": true
+      }
+   },
+       {
+      "pk": 3,
+       "model": "feeds.feed",
+       "fields":       {
+         "category": 2,
+          "url":          "http://www.teefury.com/",
+          "elements":          [
+            5,
+             6
+         ],
+          "name": "Tee Fury",
+          "published": false
+      }
+   },
+       {
+      "pk": 4,
+       "model": "feeds.feed",
+       "fields":       {
+         "category": 1,
+          "url":          "http://www.explosm.net/comics/",
+          "elements":          [
+            7
+         ],
+          "name": "Cyanide & Happiness",
+          "published": true
+      }
+   },
+       {
+      "pk": 5,
+       "model": "feeds.feed",
+       "fields":       {
+         "category": 1,
+          "url":          "http://www.penny-arcade.com/comic",
+          "elements":          [
+            8,
+             9
+         ],
+          "name": "Penny Arcade",
+          "published": true
+      }
+   },
+       {
+      "pk": 6,
+       "model": "feeds.feed",
+       "fields":       {
+         "category": 1,
+          "url":          "http://www.qwantz.com/",
+          "elements":          [
+            10
+         ],
+          "name": "Dinosaur Comics",
+          "published": false
+      }
+   },
+       {
+      "pk": 1,
+       "model": "feeds.subscription",
+       "fields":       {
+         "feeds":          [
+            1,
+             2,
+             3,
+             4,
+             5,
+             6
+         ],
+          "user": 2
+      }
+   }
+]
