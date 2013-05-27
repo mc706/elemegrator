@@ -34,6 +34,7 @@ def new_feed(request):
         if form.is_valid():
             feed = form.save(commit=False)
             feed.published = True
+            feed.save()
             uinput = json.dumps(request.POST['elements']).strip('\\n').rstrip().strip('\r')
             elements = ast.literal_eval(ast.literal_eval(uinput))
             for element in elements:
