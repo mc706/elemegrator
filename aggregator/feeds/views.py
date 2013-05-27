@@ -61,6 +61,7 @@ def view_feed(request, feed_id):
     return render_to_response('detail.html',
         {
             'feed':feed,
+            'title':feed.name,
         },RequestContext(request))
 
 

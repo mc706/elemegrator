@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }}{% endblock title %}
+
+{% block content %}
+
+<div class=page-header>
+    <h1>{{ title }}</h1>
+</div>
+{% if user.is_authenticated %}
+    <div class="pull-right span3">
+        {% if feed in user.subscriptions.feeds.all %}
+            <a href="{% url unsubscribe feed.id %}" class="btn btn-danger">UnSubscribe</a>
+        {% else %}
+            <a href="{% url subscribe feed.id %}" class="btn btn-success">Subscribe</a>
+        {% endif %}
+    </div>
+{% endif %}
+<table class="table table-condensed">
+<tr>
+    <th><h6>Category</h6></th>
+    <td>{{ feed.category }}</td>
+</tr>
+<tr>
+    <th><h6>URL</h6></th>
+    <td><a href="{{ feed.url}}">{{ feed.url }}</a></td>
+</tr>
+</table>
+<h3>Current Display</h3>
+<div class=span6>
+{{ feed.render|safe }}
+</div>
+
+{% endblock content %}
+
+{% block script %}
+
+{% endblock script %}
