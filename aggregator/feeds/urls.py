@@ -8,5 +8,7 @@ urlpatterns = patterns('feeds.views',
     url(r'sample/$', 'sample_user_feeds', name='sample_user_feeds'),
     url(r'edit/(?P<feed_id>\d+)/$', 'edit_feed', name='edit_feed'),
     url(r'view/(?P<feed_id>\d+)/$', 'view_feed', name='view_feed'),
+    url(r'subscribe/(?P<feed_id>\d+)/$', 'subscribe', name='subscribe'),
+    url(r'unsubscribe/(?P<feed_id>\d+)/$', 'unsubscribe', name='unsubscribe'),
     url('^$','feed_index'),
 )
