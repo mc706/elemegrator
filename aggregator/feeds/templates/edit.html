@@ -117,10 +117,10 @@ $().ready(function(){
             element['element'] = $(this).find('#element-type').val()
             var selector = "{";
             if ($(this).find('#attribute1').val() && $(this).find('#value1').val()){
-                selector += String($(this).find('#attribute1').val()) + ":" + String($(this).find('#value1').val());
+                selector += "'" + String($(this).find('#attribute1').val()) + "':'" + String($(this).find('#value1').val()) +"'";
             }
             if ($(this).find('#attribute2').val() && $(this).find('#value2').val()){
-                selector += "," + String($(this).find('#attribute2').val()) + ":" + String($(this).find('#value2').val());
+                selector += ",'" + String($(this).find('#attribute2').val()) + "':" + String($(this).find('#value2').val())+"'";
             }
             selector += "}";
             element['selector'] = selector;
