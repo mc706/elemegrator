@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }}{% endblock title %}
+
+{% block content %}
+
+<div class=page-header>
+    <h1>{{ title }}</h1>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th><h6>Name</h6></th>
+            <th><h6>Category</h6></th>
+            <th><h6>URL</h6></th>
+            {% if user.is_authenticated %}
+            <th><h6>Subscribe</h6></th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for feed in feeds %}
+            <tr>
+                <td>{{ feed.name }}</td>
+                <td>{{ feed.category.name }}</td>
+                <td>{{ feed.category.url }}</td>
+                {% if user.is_authenticated %}
+                    <td>
+                        <input type=checkbox
+                                {% if feed in user.subscriptions.feeds.all %}
+                                    checked="checked"
+                                {% endif %}
+                                onclick="">
+                    </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}
+
+{% block script %}
+
+{% endblock script %}
