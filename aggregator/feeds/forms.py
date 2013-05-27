@@ -7,7 +7,6 @@ class CateogryForm(forms.ModelForm):
     
     class Meta:
         model = Category
-        fields = ('name')
 
 
 class FeedForm(forms.ModelForm):
