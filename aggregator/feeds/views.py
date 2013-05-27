@@ -3,14 +3,17 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response, RequestContext, redirect
 from .models import Feed, Element, Subscription, Category
+from .forms import FeedForm
 
 def home(request):
     """Homepage"""
     if request.user.is_authenticated():
         return redirect(reverse('user_feeds'))
+    recent_feeds = Feed.objects.filter(published=True).order_by('-id')[:3]
     return render_to_response('home.html',
         {
             'title':'Home',
+            'recent_feeds':recent_feeds,
         }, RequestContext(request))
 
 def feed_index(request):
@@ -26,8 +29,10 @@ def feed_index(request):
 def new_feed(request):
     """Create New Feed"""
     if request.method == "POST":
-        #TODO: Create new feed
-        pass
+        form = FeedForm(request.POST)
+        if form.is_valid():
+            feed = form.save(commit=False)
+
     else:
         pass
         #TODO: Load Feed Form

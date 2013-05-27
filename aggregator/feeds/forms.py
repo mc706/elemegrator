@@ -15,4 +15,8 @@ class FeedForm(forms.ModelForm):
     
     class Meta:
         model = Feed
+        exclude = (
+            'elements',
+            'published',
+        )
         
