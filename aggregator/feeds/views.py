@@ -36,8 +36,8 @@ def new_feed(request):
             feed.published = True
             elements = ast.literal_eval(json.dumps(request.POST['elements']).strip('\\r\\n'))
             print elements
-            #for element in elements:
-               # ast.literal_eval(element)
+            for element in elements:
+               print element
             feed.save()
             return redirect(reverse('view_feed', args=(feed.id,)))
     else:
