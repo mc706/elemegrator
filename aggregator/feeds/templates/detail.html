@@ -28,7 +28,9 @@
 </table>
 <h3>Current Display</h3>
 <div class=span6>
-{{ feed.render|safe }}
+    {% for element in feed.elements.all %}
+        {{ element.render|safe }}
+    {% endfor %}
 </div>
 
 {% endblock content %}

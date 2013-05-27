@@ -104,12 +104,12 @@ def user_subscriptions(request):
 def subscribe(request, feed_id):
     feed = Feed.objects.get(pk=feed_id)
     request.user.subscription.feeds.add(feed)
-    return redirect(request.META.HTTP_REFERER)
+    return redirect(request.META['HTTP_REFERER'])
 
 @login_required
 def unsubscribe(request, feed_id):
     feed = Feed.objects.get(pk=feed_id)
     request.user.subscription.feeds.remove(feed)
-    return redirect(request.META.HTTP_REFERER)
+    return redirect(request.META['HTTP_REFERER'])
 
 
