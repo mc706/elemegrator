@@ -63,6 +63,17 @@ def view_feed(request, feed_id):
             'feed':feed,
         },RequestContext(request))
 
+
+def sample_user_feeds(request):
+    """Returns a list of feeds that the logged in user is subscribed to"""
+    user = User.objects.get(pk=2)
+    feeds = user.subscription.feeds.filter(published=True)
+    return render_to_response('userpage.html',
+        {
+            'feeds':feeds,
+            'title':'Your Feeds',
+        },RequestContext(request))
+
 @login_required
 def user_feeds(request):
     """Returns a list of feeds that the logged in user is subscribed to"""

@@ -10,6 +10,7 @@
 
 <form method=post id=feedform action={% if feed %}"{% url edit_feed feed.id %} " {% else %}"{% url new_feed %}"{% endif %}>
     {{ form.as_p }}
+</form>
     <h3>Elements</h3>
     <div class="element-container">
         <div class="well pull-left element" style="width:40%;margin-right: 5%">
@@ -92,7 +93,7 @@
 	<a class="btn btn-large btn-primary" style="float:right;clear:both" id=save-butt>Save</a>
 	<a class="btn" style="float:right; margin:10px;">Test</a>
 
-</form>
+
 {% endblock content %}
 
 {% block script %}
@@ -105,7 +106,7 @@ $().ready(function(){
         $('#feedform').submit(function(){
             var output = [];
             $('.element').each(function(){
-
+                $(this).children()
             })
             return true;
         })
