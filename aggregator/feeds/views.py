@@ -34,10 +34,10 @@ def new_feed(request):
             feed = form.save(commit=False)
 
     else:
-        pass
-        #TODO: Load Feed Form
+        form = FeedForm()
     return render_to_response('edit.html',
         {
+            'form':form,
             'title':'New Feed',
         },RequestContext(request))
 
