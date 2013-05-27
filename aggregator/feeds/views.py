@@ -36,9 +36,9 @@ def new_feed(request):
             feed.published = True
             elements = json.dumps(request.POST['elements'])
             for element in elements:
-                print element['type']
-                print element['element']
-                print element['selector']
+                print element#['type']
+                #print element['element']
+                #print element['selector']
             print elements.rstrip() #debug
             feed.save()
             return redirect(reverse('view_feed', args=(feed.id,)))
