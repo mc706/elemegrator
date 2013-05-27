@@ -86,7 +86,7 @@
             </div>
         </div>
     </div>
-	<a class="btn" style="float:left;clear:both" onclick="function(){$('.element').clone().append('.element-container');}">
+	<a class="btn" style="float:left;clear:both" id=add-butt>
         <i class=icon-plus></i> Add Element
     </a>
 	<a class="btn btn-large btn-primary" style="float:right;clear:both">Save</a>
@@ -96,5 +96,11 @@
 {% endblock content %}
 
 {% block script %}
-
+<script>
+$().ready(function(){
+    $('#add-butt').click(function(){
+        $('.element').clone().append('.element-container');
+    })
+})
+</script>
 {% endblock script %}
