@@ -36,7 +36,7 @@ def new_feed(request):
             feed.published = True
             uinput = json.dumps(request.POST['elements']).strip('\\n').rstrip().strip('\r')
             print uinput
-            elements = ast.literal_eval(.literal_eval(uinput))
+            elements = ast.literal_eval(ast.literal_eval(uinput))
             print elements
             print type(elements)
             for element in elements:
