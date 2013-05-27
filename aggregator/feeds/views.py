@@ -34,8 +34,8 @@ def new_feed(request):
         if form.is_valid():
             feed = form.save(commit=False)
             feed.published = True
-
-
+            elements = json.dumps(request.POST['elements'])
+            print elements #debug
             feed.save()
             return redirect(reverse('view_feed', args=(feed.id,)))
     else:

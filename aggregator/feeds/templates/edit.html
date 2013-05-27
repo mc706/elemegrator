@@ -20,16 +20,14 @@
                         Type
                     </label>
                     <select id="category" class="pull-left" name=type>
-                        <option value="Web Comic">
+                        <option value="title">
                             Title
                         </option>
-                        <option value="shirts">
+                        <option value="body">
                             Body
                         </option>
-                        <option value="q">
+                        <option value="desc">
                             Descrpition
-                        </option>
-                        <option value="value3">
                         </option>
                     </select>
                 </div>
@@ -39,16 +37,19 @@
                     </label>
                     <select id="element-type" class="pull-left" name=element>
                         <option value="div">
-                            Div
+                            &lt;div>
                         </option>
                         <option value="h1">
-                            Header1
+                            &lt;h1>
                         </option>
-                        <option value="2">
-                            Header2
+                        <option value="h2">
+                            &lt;h2>
                         </option>
                         <option value="img">
-                            Image
+                            &lt;img>
+                        </option>
+                        <option value="p">
+                            &lt;p>
                         </option>
                     </select>
                 </div>
@@ -101,17 +102,35 @@
 $().ready(function(){
     $('#add-butt').click(function(){
         $('.element').first().clone().appendTo('.element-container');
-    })
+    });
     $('#save-butt').click(function(){
+        alert('clicked')
         $('#feedform').submit(function(){
             var output = [];
             $('.element').each(function(){
-                $(this).children()
+                var element = {};
+                element['type'] = $(this).find('#category').val()
+                element['element'] = $(this).find('#element-type').val()
+                var selector = "{";
+                if ($(this).find('#attribute1').val() && $(this).find('#value1').val()){
+                    selector += String($(this).find('#attribute1').val()) + ":" + String($(this).find('#value1').val());
+                }
+                if ($(this).find('#attribute2').val() && $(this).find('#value2').val()){
+                    selector += "," + String($(this).find('#attribute2').val()) + ":" + String($(this).find('#value2').val());
+                }
+                selector += "}";
+                element['selector'] = selector
+                output.push(element)
             })
+            var element_list = JSON.stringify(output,null,2);
+            $('<input />').attr('type','hidden')
+                    .attr('name','elements')
+                    .attr('value',element_list)
+                    .appendTo('#feedform');
+            alert(element_list);
             return true;
-        })
-
-    })
+        });
+    });
 })
 
 </script>
