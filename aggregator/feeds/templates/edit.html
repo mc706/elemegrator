@@ -104,8 +104,9 @@ $().ready(function(){
         $('.element').first().clone().appendTo('.element-container');
     });
     $('#save-butt').click(function(){
-        alert('clicked')
+        console.log('Save Button Clciekd');
         $('#feedform').submit(function(){
+            console.log('Entered Form Submit');
             var output = [];
             $('.element').each(function(){
                 var element = {};
@@ -119,8 +120,9 @@ $().ready(function(){
                     selector += "," + String($(this).find('#attribute2').val()) + ":" + String($(this).find('#value2').val());
                 }
                 selector += "}";
-                element['selector'] = selector
-                output.push(element)
+                element['selector'] = selector;
+                console.log(element);
+                output.push(element);
             })
             var element_list = JSON.stringify(output,null,2);
             $('<input />').attr('type','hidden')
