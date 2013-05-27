@@ -39,7 +39,7 @@ def new_feed(request):
                 print element#['type']
                 #print element['element']
                 #print element['selector']
-            print elements.rstrip() #debug
+            print elements.rstrip('\r\n') #debug
             feed.save()
             return redirect(reverse('view_feed', args=(feed.id,)))
     else:
