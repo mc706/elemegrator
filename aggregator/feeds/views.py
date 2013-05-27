@@ -1,7 +1,8 @@
+import json
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
-from django.shortcuts import render_to_response, RequestContext, redirect
+from django.shortcuts import render_to_response, RequestContext, redirect, HttpResponse
 from .models import Feed, Element, Subscription, Category
 from .forms import FeedForm
 
@@ -40,6 +41,24 @@ def new_feed(request):
             'form':form,
             'title':'New Feed',
         },RequestContext(request))
+
+@login_required
+def test_feed(request):
+    if request.method == "POST":
+        form = FeedForm(request.POST)
+        if form.is_valid():
+            feed = form.save(commit=False)
+            #TODO: create and add elements
+            feed.published = True
+            for element in feed.elements.all():
+                element.render
+            if feed.published:
+                return HttpResponse(content_type='text/plain',content="Success", status=200)
+            else:
+                return HttpResponse(content_type='text/plain',content="Fail", status=200)
+    else:
+        return HttpResponse(status=405)
+
 
 @login_required
 def edit_feed(request, feed_id):
