@@ -35,12 +35,10 @@ def new_feed(request):
             feed = form.save(commit=False)
             feed.published = True
             uinput = json.dumps(request.POST['elements']).strip('\\n').rstrip().strip('\r')
-            print uinput
             elements = ast.literal_eval(ast.literal_eval(uinput))
-            print elements
-            print type(elements)
             for element in elements:
-               print type(element)
+                new_element = Element.objects.create(**element)
+                feed.elements.add(new_element)
             feed.save()
             return redirect(reverse('view_feed', args=(feed.id,)))
     else:
