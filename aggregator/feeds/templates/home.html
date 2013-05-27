@@ -12,6 +12,7 @@
             <div class=span4>
                 <div class=well>
                     <h4>Recently Added Feeds</h4>
+                <br>
                     <table class="table table-bordered">
                         {% for feed in recent_feeds %}
                          <tr><td>{{ feed.name }}</td></tr>
@@ -36,7 +37,8 @@
                     <p>
                         Sign up now for a free account!
                     </p>
-                    <button type=button class="btn pull-right">Sign up!</button>
+                    <a href="'" class="btn pull-right">Sign up!</a>
+                    &nbsp;
                 </div>
             </div>
         {% else %}
