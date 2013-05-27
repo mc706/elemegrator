@@ -9,7 +9,7 @@
 </div>
 
 <form method=post action={% if feed %}"{% url edit_feed feed.id %} " {% else %}"{% url new_feed %}"{% endif %}>
-    {{ form.as_div }}
+    {{ form.as_p }}
 
 </form>
 {% endblock content %}
