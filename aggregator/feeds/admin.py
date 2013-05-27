@@ -1,5 +1,5 @@
 from django.contrib import admin
-from feeds.models import Feed, Element, Subscription, Category
+from .models import Feed, Element, Subscription, Category
 
 
 class SubscriptionAdmin(admin.ModelAdmin):
@@ -15,6 +15,7 @@ class ElementAdmin(admin.ModelAdmin):
 admin.site.register(Element, ElementAdmin)
 
 class FeedAdmin(admin.ModelAdmin):
+    list_display = ('name','get_category_display','url','published')
     inlines = [ElementInline,]
     exclude = ('elements',)
 
