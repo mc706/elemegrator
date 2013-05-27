@@ -9,6 +9,7 @@
 </div>
 
 <form method=post id=feedform action={% if feed %}"{% url edit_feed feed.id %} " {% else %}"{% url new_feed %}"{% endif %}>
+    {% csrf_token %}
     {{ form.as_p }}
 </form>
     <h3>Elements</h3>
