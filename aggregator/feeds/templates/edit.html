@@ -104,34 +104,35 @@ $().ready(function(){
         $('.element').first().clone().appendTo('.element-container');
     });
     $('#save-butt').click(function(){
-        console.log('Save Button Clciekd');
-        $('#feedform').submit(function(){
-            console.log('Entered Form Submit');
-            var output = [];
-            $('.element').each(function(){
-                var element = {};
-                element['type'] = $(this).find('#category').val()
-                element['element'] = $(this).find('#element-type').val()
-                var selector = "{";
-                if ($(this).find('#attribute1').val() && $(this).find('#value1').val()){
-                    selector += String($(this).find('#attribute1').val()) + ":" + String($(this).find('#value1').val());
-                }
-                if ($(this).find('#attribute2').val() && $(this).find('#value2').val()){
-                    selector += "," + String($(this).find('#attribute2').val()) + ":" + String($(this).find('#value2').val());
-                }
-                selector += "}";
-                element['selector'] = selector;
-                console.log(element);
-                output.push(element);
-            })
-            var element_list = JSON.stringify(output,null,2);
-            $('<input />').attr('type','hidden')
-                    .attr('name','elements')
-                    .attr('value',element_list)
-                    .appendTo('#feedform');
-            alert(element_list);
-            return true;
-        });
+        console.log('Save Button Clickd');
+        $('#feedform').submit()
+    });
+    $('#feedform').submit(function(){
+        console.log('Entered Form Submit');
+        var output = [];
+        $('.element').each(function(){
+            var element = {};
+            element['type'] = $(this).find('#category').val()
+            element['element'] = $(this).find('#element-type').val()
+            var selector = "{";
+            if ($(this).find('#attribute1').val() && $(this).find('#value1').val()){
+                selector += String($(this).find('#attribute1').val()) + ":" + String($(this).find('#value1').val());
+            }
+            if ($(this).find('#attribute2').val() && $(this).find('#value2').val()){
+                selector += "," + String($(this).find('#attribute2').val()) + ":" + String($(this).find('#value2').val());
+            }
+            selector += "}";
+            element['selector'] = selector;
+            console.log(element);
+            output.push(element);
+        })
+        var element_list = JSON.stringify(output,null,2);
+        $('<input />').attr('type','hidden')
+                .attr('name','elements')
+                .attr('value',element_list)
+                .appendTo('#feedform');
+        alert(element_list);
+        return true;
     });
 })
 
