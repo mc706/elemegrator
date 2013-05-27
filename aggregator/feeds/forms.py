@@ -18,4 +18,7 @@ class FeedForm(forms.ModelForm):
             'elements',
             'published',
         )
-        
+
+    def __init__(self, *args, **kwargs):
+        super(forms.ModelForm, self).__init__(*args, **kwargs)
+        self.fields['url'].widget.attrs['type'] = "url"
