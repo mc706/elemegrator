@@ -15,7 +15,7 @@ def home(request):
 
 def feed_index(request):
     '''Returns a list of feeds'''
-    feeds = Feed.objects.all()
+    feeds = Feed.objects.filter(published=True)
     return render_to_response('index.html',
         {
             'feeds':feeds,
