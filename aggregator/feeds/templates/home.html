@@ -12,12 +12,12 @@
             <div class=span4>
                 <div class=well>
                     <h4>Recently Added Feeds</h4>
+                    <table class="table table-bordered">
+                        {% for feed in recent_feeds %}
+                         <tr><td>{{ feed.name }}</td></tr>
+                        {% endfor %}
+                    </table>
                 </div>
-            <table class="table table-bordered">
-                {% for feed in recent_feeds %}
-                 <tr><td>{{ feed.name }}</td></tr>
-                {% endfor %}
-            </table>
             </div>
             <div class=span4>
                 <div class=well>
@@ -27,6 +27,7 @@
                         up for a free account!
                     </p>
                     <a href="{% url sample_user_feeds %}" class='btn pull-right'>Sample Page</a>
+                    &nbsp;
                 </div>
             </div>
             <div class=span4>
