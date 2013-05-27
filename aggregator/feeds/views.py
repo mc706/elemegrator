@@ -35,7 +35,8 @@ def new_feed(request):
             feed = form.save(commit=False)
             feed.published = True
             elements = json.dumps(request.POST['elements'])
-            print elements #debug
+
+            print elements.strip() #debug
             feed.save()
             return redirect(reverse('view_feed', args=(feed.id,)))
     else:
