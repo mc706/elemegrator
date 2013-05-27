@@ -15,7 +15,7 @@ class ElementAdmin(admin.ModelAdmin):
 admin.site.register(Element, ElementAdmin)
 
 class FeedAdmin(admin.ModelAdmin):
-    list_display = ('name','get_category_display','url','published')
+    list_display = ('name','category','url','published')
     inlines = [ElementInline,]
     exclude = ('elements',)
 
