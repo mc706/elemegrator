@@ -6,7 +6,7 @@ from .models import Feed, Element, Subscription, Category
 
 def home(request):
     """Homepage"""
-    if request.user.is_authenticated:
+    if request.user.is_authenticated():
         return redirect(reverse('user_feeds'))
     return render_to_response('home.html',
         {
