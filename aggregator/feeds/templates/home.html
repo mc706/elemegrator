@@ -3,10 +3,44 @@
 {% block content %}
     <div class="hero-unit">
         <h1>
-            Welcome to Elemegrate!
+            Welcome to Elemegrate!<br>
             <small>The Cross-Site Element Aggregator</small>
         </h1>
-
+    </div>
+    <div class=row>
+        {% if not user.is_authenticated %}
+            <div class=span4>
+                <div class=well>
+                    <h4>Recently Added Feeds</h4>
+                </div>
+            </div>
+            <div class=span4>
+                <div class=well>
+                    <h4>View Sample Page</h4>
+                </div>
+            </div>
+            <div class=span4>
+                <div class=well>
+                    <h4>Sign up!</h4>
+                </div>
+            </div>
+        {% else %}
+            <div class=span4>
+                <div class=well>
+                    <h4>View Your Feeds</h4>
+                </div>
+            </div>
+            <div class=span4>
+                <div class=well>
+                    <h4>Add New Feed</h4>
+                </div>
+            </div>
+            <div class=span4>
+                <div class=well>
+                    <h4>Manage Subscriptions</h4>
+                </div>
+            </div>
+        {% endif %}
     </div>
 
 {% endblock content %}
