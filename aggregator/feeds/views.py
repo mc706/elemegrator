@@ -1,4 +1,4 @@
-import json
+import json, ast
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
@@ -34,12 +34,10 @@ def new_feed(request):
         if form.is_valid():
             feed = form.save(commit=False)
             feed.published = True
-            elements = json.dumps(request.POST['elements'])
-            for element in elements:
-                print element#['type']
-                #print element['element']
-                #print element['selector']
-            print elements.strip('\\r\\n') #debug
+            elements = ast.literal_eval(json.dumps(request.POST['elements']).strip('\\r\\n'))
+            print elements
+            #for element in elements:
+               # ast.literal_eval(element)
             feed.save()
             return redirect(reverse('view_feed', args=(feed.id,)))
     else:

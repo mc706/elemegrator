@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-from feeds.functions import get_element
+from .functions import get_element
 
 
 class Category(models.Model):
