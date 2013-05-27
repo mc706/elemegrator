@@ -6,16 +6,17 @@
 
 <div class=page-header>
     <h1>{{ title }}</h1>
+    {% if user.is_authenticated %}
+        <div class="pull-right">
+            {% if feed in user.subscriptions.feeds.all %}
+                <a href="{% url unsubscribe feed.id %}" class="btn btn-danger">UnSubscribe</a>
+            {% else %}
+                <a href="{% url subscribe feed.id %}" class="btn btn-success">Subscribe</a>
+            {% endif %}
+        </div>
+    {% endif %}
 </div>
-{% if user.is_authenticated %}
-    <div class="pull-right span3">
-        {% if feed in user.subscriptions.feeds.all %}
-            <a href="{% url unsubscribe feed.id %}" class="btn btn-danger">UnSubscribe</a>
-        {% else %}
-            <a href="{% url subscribe feed.id %}" class="btn btn-success">Subscribe</a>
-        {% endif %}
-    </div>
-{% endif %}
+
 <table class="table table-condensed">
 <tr>
     <th><h6>Category</h6></th>
