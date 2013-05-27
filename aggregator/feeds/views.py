@@ -33,7 +33,11 @@ def new_feed(request):
         form = FeedForm(request.POST)
         if form.is_valid():
             feed = form.save(commit=False)
+            feed.published = True
 
+
+            feed.save()
+            return redirect(reverse('view_feed', args=(feed.id,)))
     else:
         form = FeedForm()
     return render_to_response('edit.html',
@@ -44,6 +48,7 @@ def new_feed(request):
 
 @login_required
 def test_feed(request):
+    """Tests to see if feed will render. For pre saving purposes"""
     if request.method == "POST":
         form = FeedForm(request.POST)
         if form.is_valid():
@@ -91,7 +96,7 @@ def sample_user_feeds(request):
     return render_to_response('userpage.html',
         {
             'feeds':feeds,
-            'title':'Your Feeds',
+            'title':'Sample User Feeds',
         },RequestContext(request))
 
 @login_required
