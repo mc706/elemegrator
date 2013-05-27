@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %} {{ title }} {% endblock title %}
 
-{% block style %}
+{% block css %}
 <style>
     .newspaper {
         -moz-column-count: 2;
@@ -14,10 +14,10 @@
     .tile {
         display: inline-block; /* Display inline-block, and absolutely NO FLOATS! */
         margin-bottom: 20px;
-        width: 100%; }
+        width: 100%;
     }
 </style>
-{% endblock style %}
+{% endblock css %}
 
 {% block content %}
 <div class="newspaper">
