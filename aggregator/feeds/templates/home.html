@@ -13,15 +13,29 @@
                 <div class=well>
                     <h4>Recently Added Feeds</h4>
                 </div>
+            <table class="table table-bordered">
+                {% for feed in recent_feeds %}
+                 <tr><td>{{ feed.name }}</td></tr>
+                {% endfor %}
+            </table>
             </div>
             <div class=span4>
                 <div class=well>
                     <h4>View Sample Page</h4>
+                    <p>
+                        View a sample feed page to see what it looks like when you sign
+                        up for a free account!
+                    </p>
+                    <button type=button class='btn pull-right'>Sample Page</button>
                 </div>
             </div>
             <div class=span4>
                 <div class=well>
                     <h4>Sign up!</h4>
+                    <p>
+                        Sign up now for a free account!
+                    </p>
+                    <button type=button class="btn pull-right">Sign up!</button>
                 </div>
             </div>
         {% else %}
