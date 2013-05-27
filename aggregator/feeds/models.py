@@ -47,7 +47,7 @@ class Feed(models.Model):
     """Individual web comic"""
     name = models.CharField(max_length=128)
     category = models.ForeignKey(Category, blank=True, null=True)
-    url = models.URLField()
+    url = models.URLField(verbose_name="URL")
     elements = models.ManyToManyField(Element, blank=True, null=True)    
     published = models.BooleanField(default=False)
     
