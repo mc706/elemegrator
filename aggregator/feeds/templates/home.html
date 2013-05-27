@@ -15,7 +15,9 @@
                 <br>
                     <table class="table table-bordered">
                         {% for feed in recent_feeds %}
-                         <tr><td>{{ feed.name }}</td></tr>
+                         <tr onclick="window.location.href='{% url view_feed feed.id %}'" style="cursor: pointer;">
+                             <td>{{ feed.name }}</td>
+                         </tr>
                         {% endfor %}
                     </table>
                 </div>

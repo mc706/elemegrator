@@ -21,7 +21,7 @@
     </thead>
     <tbody>
         {% for feed in feeds %}
-            <tr>
+            <tr onclick="window.location.href='{% url view_feed feed.id %}'" style="cursor: pointer;">
                 <td>{{ feed.name }}</td>
                 <td>{{ feed.category.name }}</td>
                 <td>{{ feed.url }}</td>
