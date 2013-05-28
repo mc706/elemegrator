@@ -137,7 +137,7 @@ def user_subscriptions(request):
         if form.is_valid():
             pass
     else:
-        form = SubscriptionForm()
+        form = SubscriptionForm(initial={'user':request.user})
     return render_to_response('subscriptions.html',
         {
             'form':form,
