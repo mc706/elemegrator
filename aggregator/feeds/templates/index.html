@@ -48,13 +48,19 @@
         if (element.is(":checked")){
             console.log('subscribed');
             var url = "/feeds/subscribe/"+String(feed_id)+"/";
-            console.log(url)
-            $.get({url:url});
+            console.log(url);
+            $.ajax({
+                type:'POST',
+                url:url
+            });
         } else {
             console.log('unsubscribed');
             var url = "/feeds/unsubscribe/"+String(feed_id)+"/";
             console.log(url);
-            $.get({url:url});
+            $.ajax({
+                type:'POST',
+                url:url
+            });
         }
     }
 </script>
