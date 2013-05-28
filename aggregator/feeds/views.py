@@ -133,12 +133,14 @@ def user_feeds(request):
 def user_subscriptions(request):
     feeds = Feed.objects.all()
     if request.method == "POST":
-        pass
-        #TODO: Update users subscriptions
+        form = SubscriptionForm(request.POST)
+        if form.is_valid():
+            pass
     else:
         form = SubscriptionForm()
     return render_to_response('subscriptions.html',
         {
+            'form':form,
             'feeds':feeds,
             'title':'Update Subscriptions',
         },RequestContext(request))
