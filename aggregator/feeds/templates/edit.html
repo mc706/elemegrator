@@ -9,12 +9,12 @@
 </div>
 <div id="test-success" class="alert alert-success" style="display:none">
     Success! Your parameters have successfully grabbed content from the site. Click Save to create your feed
-    <a href=# data-dismiss=alert class=close>&times;</a>
+    <a href=# class=close onclick="$('#test-success').css('display','none');">&times;</a>
 </div>
 <div id='test-fail' class="alert alert-error" style="display:none">
     Uh Oh! Your parameters did not return any content. This may be because the site wont allow it or there is
     problems with the set up. Please double check and try again.
-    <a href=# data-dismiss=alert class=close>&times;</a>
+    <a href=# class=close  onclick="$('#test-fail').css('display','none');">&times;</a>
 </div>
 <form method=post id=feedform action={% if feed %}"{% url edit_feed feed.id %} " {% else %}"{% url new_feed %}"{% endif %}>
     {% csrf_token %}
@@ -100,7 +100,7 @@
 	<a class="btn" style="float:left;clear:both" id=add-butt>
         <i class=icon-plus></i> Add Element
     </a>
-	<a class="btn btn-large btn-primary" style="float:right;clear:both" id=save-butt>Save</a>
+	<button class="btn btn-large btn-primary" style="float:right;clear:both" id=save-butt disabled=disabled>Save</button>
 	<a class="btn" style="float:right; margin:10px;" id=test-butt>Test</a>
     <br style="clear:both">
 
@@ -149,11 +149,9 @@ $().ready(function(){
             success:function(data){
                 console.log(data)
                 if (data=="Test-Success"){
-                    alert("Success!");
                     $('#test-success').css('display','block')
                 }
                 if (data=="Test-Fail"){
-                    alert("Fail");
                     $('#test-fail').css('display','block')
                 }
 
@@ -187,7 +185,7 @@ $().ready(function(){
         alert(element_list);
         return true;
     });
-    $(".alert").alert()
+
 })
 
 </script>
