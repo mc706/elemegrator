@@ -7,7 +7,10 @@ def get_element(url, element, **kwargs):
     Then you can add any identifying features such as id="container" or class="box" in afterwards as **kwargs
     """
     try:
-        return BeautifulSoup(urllib2.urlopen(url).read()).find(element, **kwargs)
+        html = BeautifulSoup(urllib2.urlopen(url).read()).find(element, **kwargs)
+        if not html:
+            return False
+        return html
     except Exception as ex:
         print ex
         return False
