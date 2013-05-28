@@ -76,6 +76,9 @@ def test_feed(request):
                 return HttpResponse(content_type='text/plain',content="Success", status=200)
             else:
                 return HttpResponse(content_type='text/plain',content="Fail", status=200)
+        else:
+            print form.errors
+            return HttpResponse(status=405)
     else:
         return HttpResponse(status=405)
 
