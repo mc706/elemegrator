@@ -71,6 +71,7 @@ def test_feed(request):
             for element in feed.elements.all():
                 element.render()
             test = feed.published
+            print test
             feed.delete()
             if test:
                 return HttpResponse(content_type='text/plain',content="Test-Success", status=200)
