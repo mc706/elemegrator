@@ -23,7 +23,7 @@ def feed_index(request):
     SESSION = {}
     SESSION['feeds'] = Feed.objects.filter(published=True)
     SESSION['title'] = 'All Feeds'
-    if request.user.is_authenticated:
+    if request.user.is_authenticated():
         SESSION['subscriptions']  = request.user.subscription.feeds.all()
     return render_to_response('index.html',SESSION,RequestContext(request))
     
@@ -104,7 +104,7 @@ def view_feed(request, feed_id):
     SESSION = {}
     SESSION['feed'] = Feed.objects.get(pk=feed_id)
     SESSION['title'] = SESSION['feed'].name
-    if request.user.is_authenticated:
+    if request.user.is_authenticated():
         SESSION['subscriptions'] = request.user.subscription.feeds.all()
     return render_to_response('detail.html',SESSION,RequestContext(request))
 
