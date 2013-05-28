@@ -143,7 +143,8 @@ def user_subscriptions(request):
             'feeds':feeds,
             'title':'Update Subscriptions',
         },RequestContext(request))
-        
+
+@csrf_exempt
 @login_required
 def subscribe(request, feed_id):
     feed = Feed.objects.get(pk=feed_id)
@@ -151,6 +152,7 @@ def subscribe(request, feed_id):
     print request.user.get_full_name() + " has subscribed to " + feed.name
     return redirect(request.META['HTTP_REFERER'])
 
+@csrf_exempt
 @login_required
 def unsubscribe(request, feed_id):
     feed = Feed.objects.get(pk=feed_id)
