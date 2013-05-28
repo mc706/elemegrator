@@ -2,6 +2,7 @@ import json, ast
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render_to_response, RequestContext, redirect, HttpResponse
 from .models import Feed, Element, Subscription, Category
 from .forms import FeedForm
@@ -50,6 +51,7 @@ def new_feed(request):
             'title':'New Feed',
         },RequestContext(request))
 
+@csrf_exempt
 @login_required
 def test_feed(request):
     """Tests to see if feed will render. For pre saving purposes"""
