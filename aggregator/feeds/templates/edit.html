@@ -126,13 +126,16 @@ $().ready(function(){
             output.push(element);
         })
         var element_list = JSON.stringify(output,null,2);
+        var name = $('#id_name').val();
+        var category = $('#id_category').val();
+        var url = $('#id_url').val();
         $.ajax({
             type:'POST',
             url: "{% url test_feed %}",
             data:{
-                'name':$('#id_name').val(),
-                'category':$('#id_category').val(),
-                'url':$('#id_url').val(),
+                'name':name,
+                'category':category,
+                'url':url,
                 'elements':element_list
             },
             success:function(data,status){
