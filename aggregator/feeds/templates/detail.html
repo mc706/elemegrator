@@ -8,7 +8,7 @@
     <h1>{{ title }}</h1>
     {% if user.is_authenticated %}
         <div class="pull-right" style="margin-top: -20px;">
-            {% if feed in user.subscriptions.feeds.all %}
+            {% if feed in subscriptions %}
                 <a href="{% url unsubscribe feed.id %}" class="btn btn-danger">UnSubscribe</a>
             {% else %}
                 <a href="{% url subscribe feed.id %}" class="btn btn-success">Subscribe</a>

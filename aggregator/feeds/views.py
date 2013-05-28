@@ -101,12 +101,12 @@ def edit_feed(request, feed_id):
 
 def view_feed(request, feed_id):
     """Returns individiual Feed"""    
-    feed = Feed.objects.get(pk=feed_id)
-    return render_to_response('detail.html',
-        {
-            'feed':feed,
-            'title':feed.name,
-        },RequestContext(request))
+    SESSION = {}
+    SESSION['feed'] = Feed.objects.get(pk=feed_id)
+    SESSION['title'] = SESSION['feed'].name
+    if request.user.is_authenticated:
+        SESSION['subscriptions'] = request.user.subscription.feeds.all()
+    return render_to_response('detail.html',SESSION,RequestContext(request))
 
 
 def sample_user_feeds(request):
