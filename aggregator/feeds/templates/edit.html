@@ -93,8 +93,8 @@
         <i class=icon-plus></i> Add Element
     </a>
 	<a class="btn btn-large btn-primary" style="float:right;clear:both" id=save-butt>Save</a>
-	<a class="btn" style="float:right; margin:10px;">Test</a>
-
+	<a class="btn" style="float:right; margin:10px;" id=test-butt>Test</a>
+    <br style="clear:both">
 
 {% endblock content %}
 
@@ -105,8 +105,40 @@ $().ready(function(){
         $('.element').first().clone().appendTo('.element-container');
     });
     $('#save-butt').click(function(){
-        console.log('Save Button Clickd');
         $('#feedform').submit()
+    });
+    $('#test-butt').click(function(){
+        var output = [];
+        $('.element').each(function(){
+            var element = {};
+            element['type'] = $(this).find('#category').val()
+            element['element'] = $(this).find('#element-type').val()
+            var selector = "{";
+            if ($(this).find('#attribute1').val() && $(this).find('#value1').val()){
+                selector += "'" + String($(this).find('#attribute1').val()) + "':'" + String($(this).find('#value1').val()) +"'";
+            }
+            if ($(this).find('#attribute2').val() && $(this).find('#value2').val()){
+                selector += ",'" + String($(this).find('#attribute2').val()) + "':" + String($(this).find('#value2').val())+"'";
+            }
+            selector += "}";
+            element['selector'] = selector;
+            console.log(element);
+            output.push(element);
+        })
+        var element_list = JSON.stringify(output,null,2);
+        $.ajax({
+            type:'POST',
+            url: "{% url test_feed %}",
+            data:{
+                'name':$('#name_id').val(),
+                'category':$('#category_id').val(),
+                'url':$('#url_id').val(),
+                'elements':element_list
+            },
+            success:function(data,status){
+                console.log(data, status)
+            }
+        })
     });
     $('#feedform').submit(function(){
         console.log('Entered Form Submit');

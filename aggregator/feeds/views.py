@@ -55,13 +55,23 @@ def test_feed(request):
     """Tests to see if feed will render. For pre saving purposes"""
     if request.method == "POST":
         form = FeedForm(request.POST)
+        form = FeedForm(request.POST)
         if form.is_valid():
             feed = form.save(commit=False)
-            #TODO: create and add elements
+            feed.published = True
+            feed.save()
+            uinput = json.dumps(request.POST['elements']).strip('\\n').rstrip().strip('\r')
+            elements = ast.literal_eval(ast.literal_eval(uinput))
+            for element in elements:
+                new_element = Element.objects.create(**element)
+                feed.elements.add(new_element)
+            feed.save()
             feed.published = True
             for element in feed.elements.all():
                 element.render
-            if feed.published:
+            test = feed.published
+            feed.delete()
+            if test:
                 return HttpResponse(content_type='text/plain',content="Success", status=200)
             else:
                 return HttpResponse(content_type='text/plain',content="Fail", status=200)
