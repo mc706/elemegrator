@@ -47,10 +47,12 @@
     function selected(element, feed_id){
         if (element.is(":checked")){
             console.log('subscribed');
-            $.get({url:"/feeds/subscribe/"+String(feed_id)});
+            var url = "/feeds/subscribe/"+String(feed_id)
+            $.get({url:url});
         } else {
             console.log('unsubscribed');
-            $.get({url:"/feeds/unsubscribe/"+String(feed_id)});
+            var url = "/feeds/unsubscribe/"+String(feed_id)
+            $.get({url:url});
         }
     }
 </script>
