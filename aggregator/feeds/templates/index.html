@@ -31,7 +31,7 @@
                                 {% if feed in subscriptions %}
                                     checked="checked"
                                 {% endif %}
-                                onclick="">
+                                onclick="selected($(this),{{feed.id}})">
                     </td>
                 {% endif %}
             </tr>
