@@ -43,5 +43,14 @@
 {% endblock content %}
 
 {% block script %}
+<script>
+    function selected(element, feed_id){
+        if (element.is(":checked")){
+            $.get({url:"{% url subscribe%}"+feed_id})
+        } else {
+            $.get({url:"{% url unsubscribe%}"+feed_id})
+        }
+    }
+</script>
 
 {% endblock script %}
