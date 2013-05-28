@@ -46,9 +46,9 @@
 <script>
     function selected(element, feed_id){
         if (element.is(":checked")){
-            $.get({url:"{% url subscribe%}"+feed_id})
+            $.get({url:"/feeds/subscribe/"+feed_id})
         } else {
-            $.get({url:"{% url unsubscribe%}"+feed_id})
+            $.get({url:"/feeds/unsubscribe/"+feed_id})
         }
     }
 </script>
