@@ -131,18 +131,21 @@ def user_feeds(request):
     
 @login_required
 def user_subscriptions(request):
-    feeds = Feed.objects.all()
+    subscription = Subscription.objects.get(user=request.user)
     if request.method == "POST":
-        form = SubscriptionForm(request.POST)
+        form = SubscriptionForm(request.POST, instance=subscription)
         if form.is_valid():
-            pass
+            try:
+                form.save()
+            except Exception as ex:
+                print ex
+        else:
+            print form.errors
     else:
-        subscription = Subscription.objects.get(user=request.user)
         form = SubscriptionForm(instance=subscription)
     return render_to_response('subscriptions.html',
         {
             'form':form,
-            'feeds':feeds,
             'title':'Update Subscriptions',
         },RequestContext(request))
 
