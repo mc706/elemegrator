@@ -71,7 +71,7 @@ def test_feed(request):
             for element in feed.elements.all():
                 html = element.render()
                 if not html:
-                    feed.publish = False
+                    feed.published = False
             test = feed.published
             print test
             feed.delete()
