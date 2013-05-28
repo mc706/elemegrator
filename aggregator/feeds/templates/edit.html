@@ -7,11 +7,11 @@
 <div class=page-header>
     <h1>{{ title }}</h1>
 </div>
-<div id="test-success" class="alert alert-success" style=display:none;>
+<div id="test-success" class="alert alert-success" style="visibility: hidden">
     Success! Your parameters have successfully grabbed content from the site. Click Save to create your feed
     <a href=# data-dismiss=alert class=close>&times;</a>
 </div>
-<div id='test-fail' class="alert alert-error" style=display:none;>
+<div id='test-fail' class="alert alert-error" style="visibility: hidden;">
     Uh Oh! Your parameters did not return any content. This may be because the site wont allow it or there is
     problems with the set up. Please double check and try again.
     <a href=# data-dismiss=alert class=close>&times;</a>
@@ -149,10 +149,10 @@ $().ready(function(){
             success:function(data,status){
                 console.log(data, status)
                 if (data=="Success"){
-                    $('#test-succses').css('display','inherit')
+                    $('#test-succses').css('visibility','visible')
                 }
                 if (data=="Fail"){
-                    $('#test-fail').css('display','inherit')
+                    $('#test-fail').css('visibiltiy ','visible')
                 }
 
             }
