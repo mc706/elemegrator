@@ -57,7 +57,6 @@ def test_feed(request):
     """Tests to see if feed will render. For pre saving purposes"""
     if request.method == "POST":
         form = FeedForm(request.POST)
-        form = FeedForm(request.POST)
         if form.is_valid():
             feed = form.save(commit=False)
             feed.published = True
@@ -70,7 +69,7 @@ def test_feed(request):
             feed.save()
             feed.published = True
             for element in feed.elements.all():
-                element.render
+                element.render()
             test = feed.published
             feed.delete()
             if test:
