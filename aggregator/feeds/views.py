@@ -69,7 +69,8 @@ def test_feed(request):
             feed.save()
             feed.published = True
             for element in feed.elements.all():
-                element.render()
+                a = element.render()
+                print a
             test = feed.published
             print test
             feed.delete()
