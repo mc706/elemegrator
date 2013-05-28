@@ -31,6 +31,6 @@ class SubscriptionForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(forms.ModelForm, self).__init__(*args, **kwargs)
-        self.fields['user'].widget - forms.HiddenInput()
+        self.fields['user'].widget = forms.HiddenInput()
 
 
