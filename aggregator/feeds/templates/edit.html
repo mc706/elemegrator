@@ -130,9 +130,9 @@ $().ready(function(){
             type:'POST',
             url: "{% url test_feed %}",
             data:{
-                'name':$('#name_id').val(),
-                'category':$('#category_id').val(),
-                'url':$('#url_id').val(),
+                'name':$('#id_name').val(),
+                'category':$('#id_category').val(),
+                'url':$('#id_url').val(),
                 'elements':element_list
             },
             success:function(data,status){
