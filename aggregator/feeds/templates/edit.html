@@ -116,6 +116,7 @@ $().ready(function(){
         $('#feedform').submit()
     });
     $('#test-butt').click(function(){
+        $('.alert').css('display','none');
         var output = [];
         $('.element').each(function(){
             var element = {};
@@ -149,10 +150,12 @@ $().ready(function(){
             success:function(data){
                 console.log(data)
                 if (data=="Test-Success"){
-                    $('#test-success').css('display','block')
+                    $('#test-success').css('display','block');
+                    $('#save-butt').removeAttr('disabled');
                 }
                 if (data=="Test-Fail"){
                     $('#test-fail').css('display','block')
+                    $('#save-butt').attr('disabled','disabled');
                 }
 
             }
