@@ -7,7 +7,15 @@
 <div class=page-header>
     <h1>{{ title }}</h1>
 </div>
-
+<div class="alert alert-success" style=display:hidden;>
+    Success! Your parameters have successfully grabbed content from the site. Click Save to create your feed
+    <a href=# data-dismiss=alert class=close>&times;</a>
+</div>
+<div class="alert alert-error" style=display:hidden;>
+    Uh Oh! Your parameters did not return any content. This may be because the site wont allow it or there is
+    problems with the set up. Please double check and try again.
+    <a href=# data-dismiss=alert class=close>&times;</a>
+</div>
 <form method=post id=feedform action={% if feed %}"{% url edit_feed feed.id %} " {% else %}"{% url new_feed %}"{% endif %}>
     {% csrf_token %}
     {{ form.as_p }}
@@ -140,6 +148,13 @@ $().ready(function(){
             },
             success:function(data,status){
                 console.log(data, status)
+                if (data=="Success"){
+                    $('.alter-success').css('display','inherit')
+                }
+                if (data=="Fail"){
+                    $('.alter-error').css('display','inherit')
+                }
+
             }
         })
     });
@@ -170,6 +185,7 @@ $().ready(function(){
         alert(element_list);
         return true;
     });
+    $(".alert").alert()
 })
 
 </script>
