@@ -27,11 +27,11 @@
                 <td  onclick="window.location.href='{% url view_feed feed.id %}'" style="cursor: pointer;">{{ feed.url }}</td>
                 {% if user.is_authenticated %}
                     <td>
-                        <input type=checkbox
-                                {% if feed in subscriptions %}
-                                    checked="checked"
-                                {% endif %}
-                                onclick="selected($(this),{{feed.id}})">
+                    {% if feed in subscriptions %}
+                        <a href="{% url unsubscribe feed.id %}" class="btn btn-danger">UnSubscribe</a>
+                    {% else %}
+                        <a href="{% url subscribe feed.id %}" class="btn btn-success">Subscribe</a>
+                    {% endif %}
                     </td>
                 {% endif %}
             </tr>
