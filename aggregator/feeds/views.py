@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render_to_response, RequestContext, redirect, HttpResponse
 from .models import Feed, Element, Subscription, Category
-from .forms import FeedForm
+from .forms import FeedForm, SubscriptionForm
 
 def home(request):
     """Homepage"""
@@ -136,8 +136,7 @@ def user_subscriptions(request):
         pass
         #TODO: Update users subscriptions
     else:
-        pass
-        #TODO: Load subscription form
+        form = SubscriptionForm()
     return render_to_response('subscriptions.html',
         {
             'feeds':feeds,

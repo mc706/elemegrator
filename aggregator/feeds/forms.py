@@ -1,5 +1,5 @@
 from django import forms
-from .models import Feed, Category
+from .models import Feed, Category, Subscription
 
 
 class CateogryForm(forms.ModelForm):
@@ -22,3 +22,9 @@ class FeedForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(forms.ModelForm, self).__init__(*args, **kwargs)
         self.fields['url'].widget.attrs['type'] = "url"
+
+class SubscriptionForm(forms.ModelForm):
+    """Form for managing user"""
+
+    class Meta:
+        model = Subscription
