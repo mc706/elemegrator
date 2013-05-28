@@ -73,9 +73,9 @@ def test_feed(request):
             test = feed.published
             feed.delete()
             if test:
-                return HttpResponse(content_type='text/plain',content="Success", status=200)
+                return HttpResponse(content_type='text/plain',content="Test-Success", status=200)
             else:
-                return HttpResponse(content_type='text/plain',content="Fail", status=200)
+                return HttpResponse(content_type='text/plain',content="Test-Fail", status=200)
         else:
             print form.errors
             return HttpResponse(status=405)
