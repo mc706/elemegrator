@@ -28,7 +28,7 @@
                 {% if user.is_authenticated %}
                     <td>
                         <input type=checkbox
-                                {% if feed in user.subscriptions.feeds.all %}
+                                {% if feed in subscriptions %}
                                     checked="checked"
                                 {% endif %}
                                 onclick="">

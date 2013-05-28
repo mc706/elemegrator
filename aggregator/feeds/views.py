@@ -20,12 +20,12 @@ def home(request):
 
 def feed_index(request):
     '''Returns a list of feeds'''
-    feeds = Feed.objects.filter(published=True)
-    return render_to_response('index.html',
-        {
-            'feeds':feeds,
-            'title':'All Feeds',
-        },RequestContext(request))
+    SESSION = {}
+    SESSION['feeds'] = Feed.objects.filter(published=True)
+    SESSION['title'] = 'All Feeds'
+    if request.user.is_authenticated:
+        SESSION['subscriptions']  = request.user.subscription.feeds.all()
+    return render_to_response('index.html',SESSION,RequestContext(request))
     
 @login_required
 def new_feed(request):
@@ -73,7 +73,6 @@ def test_feed(request):
                 if not html:
                     feed.published = False
             test = feed.published
-            print test
             feed.delete()
             if test:
                 return HttpResponse(content_type='text/plain',content="Test-Success", status=200)
