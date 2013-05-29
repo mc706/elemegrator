@@ -11,7 +11,7 @@ def get_element(url, element, **kwargs):
         print url, html
         if not html:
             return False
-        if "src" in str(html) and "http" not in html:
+        if "src" in html and url not in html:
             html = html[:html.find('src')+5] + url + html[html.find('src')+5:]
             print html
         return html
