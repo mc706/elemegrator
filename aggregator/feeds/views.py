@@ -124,7 +124,7 @@ def sample_user_feeds(request):
 def user_feeds(request):
     """Returns a list of feeds that the logged in user is subscribed to"""
     feeds = request.user.subscription.feeds.filter(published=True)
-    return render_to_response('userpage.html',
+    return render_to_response('fast_userpage.html',
         {
             'feeds':feeds,
             'title':'Your Feeds',
