@@ -119,6 +119,7 @@ def sample_user_feeds(request):
             'title':'Sample User Feeds',
         },RequestContext(request))
 
+@csrf_exempt
 @login_required
 def user_feeds(request):
     """Returns a list of feeds that the logged in user is subscribed to"""
