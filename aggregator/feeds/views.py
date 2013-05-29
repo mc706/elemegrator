@@ -132,7 +132,6 @@ def user_feeds(request):
 
 
 @csrf_exempt
-@login_required
 def load_feed(request):
     if request.method == "POST":
         try:
