@@ -12,7 +12,7 @@ def get_element(url, element, **kwargs):
         if not html:
             return False
         try:
-            if "src" in str(html) and url not in str(html):
+            if "src" in str(html) and 'http' not in str(html):
                 html['src'] = urlparse.urljoin(url,html['src'])
                 print html
         except Exception as en:
