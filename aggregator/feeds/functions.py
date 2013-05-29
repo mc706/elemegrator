@@ -14,7 +14,6 @@ def get_element(url, element, **kwargs):
         try:
             if "src" in str(html) and 'http' not in str(html):
                 html['src'] = urlparse.urljoin(url,html['src'])
-                print html
         except Exception as en:
             print en
             raise en
