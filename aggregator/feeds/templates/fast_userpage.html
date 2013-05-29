@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %} {{ title }} {% endblock title %}
+
+{% block css %}
+<style>
+    .newspaper {
+        -moz-column-count: 2;
+        -moz-column-gap: 10px;
+        -webkit-column-count: 2;
+        -webkit-column-gap: 10px;
+        column-count: 2;
+        column-gap: 10px;
+    }
+    .tile {
+        display: inline-block; /* Display inline-block, and absolutely NO FLOATS! */
+        margin-bottom: 20px;
+        width: 90%;
+    }
+</style>
+{% endblock css %}
+
+{% block content %}
+<div class="newspaper">
+    {% for feed in feeds %}
+    <div class="tile well">
+        <a href="{{ feed.url }}">
+            <h4>{{ feed.name }}</h4>
+        </a>
+        <div id=content_{{ feed.id }} style="text-align: center">
+            <img src="{{ STATIC_URL }}img/ActivityIndicator.gif"/>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock content %}
+
+{% block script %}
+<script>
+    {% for feed in feeds %}
+        $.ajax({
+            url:"{% url load %}",
+            type:"POST",
+            data:{
+                'feed_id':{{ feed.id }},
+                csrfmiddlewaretoken: '{% csrf_token %}'
+            },
+            success:function(data,status){
+                if (status=="success"){
+                    $('#content_{{ feed.id }}').empty();
+                    $('#content_{{ feed.id }}').html(data);
+                }
+            }
+        })
+    {% endfor %}
+</script>
+{% endblock script %}

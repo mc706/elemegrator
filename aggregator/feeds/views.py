@@ -128,7 +128,31 @@ def user_feeds(request):
             'feeds':feeds,
             'title':'Your Feeds',
         },RequestContext(request))
-    
+
+@login_required
+def fast_user_feeds(request):
+    """Returns a list of feeds that the logged in user is subscribed to"""
+    feeds = request.user.subscription.feeds.filter(published=True)
+    return render_to_response('fast_userpage.html',
+        {
+            'feeds':feeds,
+            'title':'Your Feeds',
+        },RequestContext(request))
+
+@login_required
+def load_feed(request):
+    if request.method == "POST":
+        try:
+            feed = Feed.objects.get(pk=request.POST['feed_id'])
+        except Exception as ex:
+            return HttpResponse(status=404)
+        html = ""
+        for element in feed.elements.all():
+            html += element.render()
+        return HttpResponse(content_type="text/hml",content=html,status=200)
+    else:
+        return HttpResponse(status=403)
+
 @login_required
 def user_subscriptions(request):
     subscription = Subscription.objects.get(user=request.user)
