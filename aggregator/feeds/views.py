@@ -150,7 +150,7 @@ def load_feed(request):
             return HttpResponse(status=404)
         html = ""
         for element in feed.elements.all():
-            html += element.render()
+            html += str(element.render())
         return HttpResponse(content_type="text/hml",content=html,status=200)
     else:
         return HttpResponse(status=403)
