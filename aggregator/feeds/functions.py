@@ -1,5 +1,6 @@
 from BeautifulSoup import BeautifulSoup
 import urllib2
+import urlparse
 
 def get_element(url, element, **kwargs):
     """Retrives elements and all its content from url.
@@ -8,12 +9,16 @@ def get_element(url, element, **kwargs):
     """
     try:
         html = BeautifulSoup(urllib2.urlopen(url).read()).find(element, **kwargs)
-        print url, html
+        print type(html)
         if not html:
             return False
-        if "src" in html and url not in html:
-            html = html[:html.find('src')+5] + url + html[html.find('src')+5:]
-            print html
+        try:
+            if "src" in html and url not in html:
+                html['src'] = urlparse.urljoin(url,html['src'])
+                print html
+        except Exception as en:
+            print en
+            raise en
         return html
     except Exception as ex:
         print ex
