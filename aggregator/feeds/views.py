@@ -113,7 +113,7 @@ def sample_user_feeds(request):
     """Returns a list of feeds that the logged in user is subscribed to"""
     user = User.objects.get(pk=2)
     feeds = user.subscription.feeds.filter(published=True)
-    return render_to_response('userpage.html',
+    return render_to_response('fast_userpage.html',
         {
             'feeds':feeds,
             'title':'Sample User Feeds',
@@ -130,15 +130,6 @@ def user_feeds(request):
             'title':'Your Feeds',
         },RequestContext(request))
 
-@login_required
-def fast_user_feeds(request):
-    """Returns a list of feeds that the logged in user is subscribed to"""
-    feeds = request.user.subscription.feeds.filter(published=True)
-    return render_to_response('fast_userpage.html',
-        {
-            'feeds':feeds,
-            'title':'Your Feeds',
-        },RequestContext(request))
 
 @csrf_exempt
 @login_required
