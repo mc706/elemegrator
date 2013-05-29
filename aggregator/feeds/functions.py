@@ -9,11 +9,10 @@ def get_element(url, element, **kwargs):
     """
     try:
         html = BeautifulSoup(urllib2.urlopen(url).read()).find(element, **kwargs)
-        print type(html)
         if not html:
             return False
         try:
-            if "src" in html and url not in html:
+            if "src" in str(html) and url not in str(html):
                 html['src'] = urlparse.urljoin(url,html['src'])
                 print html
         except Exception as en:
