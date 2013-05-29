@@ -12,6 +12,8 @@ for feed in feeds:
     feed.published = True
     feed.save()
 
-urllib2.urlopen('http://webaggregator.net/feeds/sample/').read()
+a=urllib2.urlopen('http://webaggregator.net/feeds/sample/')
+a.read()
+print a
 
 
