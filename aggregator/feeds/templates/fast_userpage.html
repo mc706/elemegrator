@@ -43,8 +43,7 @@
             url:"{% url load %}",
             type:"POST",
             data:{
-                'feed_id':{{ feed.id }},
-                csrfmiddlewaretoken: '{% csrf_token %}'
+                'feed_id':{{ feed.id }}
             },
             success:function(data,status){
                 if (status=="success"){
