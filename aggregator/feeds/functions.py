@@ -8,6 +8,7 @@ def get_element(url, element, **kwargs):
     """
     try:
         html = BeautifulSoup(urllib2.urlopen(url).read()).find(element, **kwargs)
+        print url, html
         if not html:
             return False
         if "src" in html and url not in html:
