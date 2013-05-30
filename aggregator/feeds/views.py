@@ -123,6 +123,9 @@ def sample_user_feeds(request):
 @login_required
 def user_feeds(request):
     """Returns a list of feeds that the logged in user is subscribed to"""
+    subscription, created = Subscription.objects.get_or_create(user=request.user)
+    if created:
+        return redirect(reverse('feed_index'))
     feeds = request.user.subscription.feeds.filter(published=True)
     return render_to_response('fast_userpage.html',
         {
@@ -180,5 +183,4 @@ def unsubscribe(request, feed_id):
     request.user.subscription.feeds.remove(feed)
     print request.user.get_full_name() + " has unsubscribed from " + feed.name
     return redirect(request.META['HTTP_REFERER'])
-
 
