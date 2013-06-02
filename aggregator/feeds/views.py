@@ -81,8 +81,8 @@ def test_feed(request):
             if not errors:
                 result = {'result':True,'html':feed_html}
             else:
-	        result = {'result':False,'errors':errors}	
-	    return HttpResponse(content_type='application/json',content=result, status=200)
+                result = {'result':False,'errors':errors}
+            return HttpResponse(content_type='application/json',content=json.dumps(result), status=200)
         else:
             print form.errors
             return HttpResponse(status=405)
