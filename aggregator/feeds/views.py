@@ -76,7 +76,7 @@ def test_feed(request):
                     feed.published = False
                     errors.append(html)
                 else:
-                    feed_html += html
+                    feed_html += str(html)
             feed.delete()
             if not errors:
                 result = {'result':True,'html':feed_html}
