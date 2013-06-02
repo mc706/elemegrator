@@ -74,7 +74,7 @@ def test_feed(request):
                 response, html = element.render()
                 if not response:
                     feed.published = False
-                    errors.append(str(html)+"<br>")
+                    errors.append(str(html))
                 else:
                     feed_html += str(html)
             feed.delete()
