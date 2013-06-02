@@ -10,11 +10,13 @@
 <div id="test-success" class="alert alert-success" style="display:none">
     Success! Your parameters have successfully grabbed content from the site. Click Save to create your feed
     <a href=# class=close onclick="$('#test-success').css('display','none');">&times;</a>
+    <div id=success-result></div>
 </div>
 <div id='test-fail' class="alert alert-error" style="display:none">
     Uh Oh! Your parameters did not return any content. This may be because the site wont allow it or there is
     problems with the set up. Please double check and try again.
     <a href=# class=close  onclick="$('#test-fail').css('display','none');">&times;</a>
+    <div id=fail-result></div>
 </div>
 <form method=post id=feedform action={% if feed %}"{% url edit_feed feed.id %} " {% else %}"{% url new_feed %}"{% endif %}>
     {% csrf_token %}
@@ -149,13 +151,14 @@ $().ready(function(){
             },
             success:function(data){
                 console.log(data)
-                if (data=="Test-Success"){
+                if (data['result']){
                     $('#test-success').css('display','block');
                     $('#save-butt').removeAttr('disabled');
-                }
-                if (data=="Test-Fail"){
+                    $('#success-result').html(data['html']);
+                } else{
                     $('#test-fail').css('display','block')
                     $('#save-butt').attr('disabled','disabled');
+                    $('#fail-result').html(data['errors']);
                 }
 
             }

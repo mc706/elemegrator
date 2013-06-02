@@ -148,7 +148,8 @@ def load_feed(request):
             return HttpResponse(status=404)
         html = ""
         for element in feed.elements.all():
-            response,html += str(element.render())
+            response,response_html = element.render()
+            html += str(response_html) 
         return HttpResponse(content_type="text/html",content=html,status=200)
     else:
         return HttpResponse(status=403)

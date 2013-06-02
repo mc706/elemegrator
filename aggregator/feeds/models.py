@@ -32,11 +32,11 @@ class Element(models.Model):
     def render(self):
         import ast
         feed = self.feed_set.all()[0]
-        html =  get_element(feed.url,self.element, **ast.literal_eval(self.selector))
-        if not html:
+        response, html =  get_element(feed.url,self.element, **ast.literal_eval(self.selector))
+        if not response:
             feed.published = False
             feed.save()
-        return html
+        return response, html
         
     class Meta:
         verbose_name = 'element'
