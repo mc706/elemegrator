@@ -17,7 +17,7 @@ def get_element(url, element, **kwargs):
         except Exception as en:
             print en
             raise en
-        return html
+        return True, html
     except Exception as ex:
         print ex
-        return False
+        return False, ex

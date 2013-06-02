@@ -68,16 +68,21 @@ def test_feed(request):
                 feed.elements.add(new_element)
             feed.save()
             feed.published = True
+            errors = []
+            feed_html = ""
             for element in feed.elements.all():
-                html = element.render()
-                if not html:
+                response, html = element.render()
+                if not response:
                     feed.published = False
-            test = feed.published
+                    errors.append(html)
+                else:
+                    feed_html += html
             feed.delete()
-            if test:
-                return HttpResponse(content_type='text/plain',content="Test-Success", status=200)
+            if not errors:
+                result = {'result':True,'html':feed_html}
             else:
-                return HttpResponse(content_type='text/plain',content="Test-Fail", status=200)
+	        result = {'result':False,'errors':errors}	
+	    return HttpResponse(content_type='application/json',content=result, status=200)
         else:
             print form.errors
             return HttpResponse(status=405)
@@ -143,8 +148,8 @@ def load_feed(request):
             return HttpResponse(status=404)
         html = ""
         for element in feed.elements.all():
-            html += str(element.render())
-        return HttpResponse(content_type="text/hml",content=html,status=200)
+            response,html += str(element.render())
+        return HttpResponse(content_type="text/html",content=html,status=200)
     else:
         return HttpResponse(status=403)
 
