@@ -36,8 +36,7 @@ def new_feed(request):
             feed = form.save(commit=False)
             feed.published = True
             feed.save()
-            uinput = json.dumps(request.POST['elements']).strip('\\n').rstrip().strip('\r')
-            elements = ast.literal_eval(ast.literal_eval(uinput))
+            elements = json.loads(request.POST['elements'])
             for element in elements:
                 new_element = Element.objects.create(**element)
                 feed.elements.add(new_element)
@@ -61,8 +60,7 @@ def test_feed(request):
             feed = form.save(commit=False)
             feed.published = True
             feed.save()
-            uinput = json.dumps(request.POST['elements']).strip('\\n').rstrip().strip('\r')
-            elements = ast.literal_eval(ast.literal_eval(uinput))
+            elements = json.loads(request.POST['elements'])
             for element in elements:
                 new_element = Element.objects.create(**element)
                 feed.elements.add(new_element)
